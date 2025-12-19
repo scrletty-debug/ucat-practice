@@ -1092,6 +1092,7 @@
                 options = ['A. True', 'B. False', 'C. Can\'t Tell'];
             } else {
                 // Multiple choice - use actual option text from database
+                console.log('MC Question:', question.q, 'Has options:', question.options);
                 if (question.options) {
                     options = [
                         'A. ' + question.options.A,
@@ -1100,9 +1101,11 @@
                         'D. ' + question.options.D
                     ];
                 } else {
+                    console.warn('No options found for MC question', question.q);
                     options = ['A. Option A', 'B. Option B', 'C. Option C', 'D. Option D'];
                 }
             }
+            console.log('Final options:', options);
             
             options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
