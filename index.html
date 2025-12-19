@@ -782,7 +782,7 @@
                 <h3>Settings</h3>
                 <div class="filter-row">
                     <label>
-                        <input type="checkbox" id="timedMode"> Timed Mode (90s/question)
+                        <input type="checkbox" id="timedMode"> Show Timer
                     </label>
                     <label>
                         <input type="checkbox" id="showExplanations" checked> Show Explanations
@@ -1031,6 +1031,10 @@
             currentQuestionIndex = 0;
             passageVisible = true;
             
+            // Reset and stop any existing timer
+            stopTimer();
+            timeRemaining = 0;
+            
             document.getElementById('controlPanel').style.display = 'none';
             document.getElementById('progressBar').style.display = 'block';
             document.getElementById('practiceContainer').style.display = 'grid';
@@ -1113,9 +1117,10 @@
             document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('explanation').classList.remove('show');
 
-            if (document.getElementById('timedMode').checked) {
+            // Start timer on first question only if timer mode is enabled
+            if (currentQuestionIndex === 0 && document.getElementById('timedMode').checked) {
                 startTimer();
-            } else {
+            } else if (!document.getElementById('timedMode').checked) {
                 document.getElementById('timer').textContent = '';
             }
         }
@@ -1198,18 +1203,12 @@
         }
 
         function startTimer() {
-            timeRemaining = 90;
+            timeRemaining = 0;
             updateTimerDisplay();
             
             timerInterval = setInterval(() => {
-                timeRemaining--;
+                timeRemaining++;
                 updateTimerDisplay();
-                
-                if (timeRemaining <= 0) {
-                    stopTimer();
-                    alert('Time\'s up!');
-                    skipQuestion();
-                }
             }, 1000);
         }
 
