@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UCAT Verbal Reasoning Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,55 +13,74 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(to bottom, #DBEAFE, #EFF6FF, #FFFFFF);
             min-height: 100vh;
             padding: 20px;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated background blobs */
+        /* Animated background blobs - matching the reference exactly */
         .blob {
             position: fixed;
             border-radius: 50%;
             filter: blur(60px);
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
+            transition: all 0.7s ease-out;
+            cursor: pointer;
             z-index: 0;
         }
 
+        .blob:hover {
+            transform: scale(1.25) translateY(-30px);
+        }
+
         .blob1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.3);
-            top: -200px;
-            left: -200px;
-            animation-delay: 0s;
+            width: 256px;
+            height: 256px;
+            background: rgba(59, 130, 246, 0.3);
+            top: 5%;
+            left: 8%;
         }
 
         .blob2 {
-            width: 500px;
-            height: 500px;
-            background: rgba(102, 126, 234, 0.4);
-            top: 50%;
-            right: -250px;
-            animation-delay: 4s;
+            width: 320px;
+            height: 320px;
+            background: rgba(96, 165, 250, 0.25);
+            top: 15%;
+            right: 10%;
         }
 
         .blob3 {
-            width: 350px;
-            height: 350px;
-            background: rgba(118, 75, 162, 0.3);
-            bottom: -175px;
-            left: 30%;
-            animation-delay: 2s;
+            width: 288px;
+            height: 288px;
+            background: rgba(99, 102, 241, 0.3);
+            top: 40%;
+            left: 15%;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
+        .blob4 {
+            width: 224px;
+            height: 224px;
+            background: rgba(6, 182, 212, 0.25);
+            top: 35%;
+            right: 25%;
+        }
+
+        .blob5 {
+            width: 272px;
+            height: 272px;
+            background: rgba(59, 130, 246, 0.3);
+            bottom: 20%;
+            right: 8%;
+        }
+
+        .blob6 {
+            width: 320px;
+            height: 320px;
+            background: rgba(14, 165, 233, 0.25);
+            bottom: 10%;
+            left: 12%;
         }
 
         .container {
@@ -70,19 +90,18 @@
             z-index: 1;
         }
 
-        /* Glass morphism effect */
+        /* Glass morphism effect - matching reference */
         .glass {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
 
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            padding: 30px;
+            padding: 48px 30px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             margin-bottom: 30px;
@@ -91,22 +110,24 @@
         }
 
         .header h1 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #3B82F6, #6366F1, #A855F7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 800;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
 
         .header p {
-            color: #666;
-            font-size: 1.2em;
-            font-weight: 500;
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 1.5rem;
+            font-weight: 400;
         }
 
         .stats-bar {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(59, 130, 246, 0.25);
             backdrop-filter: blur(20px);
             padding: 25px;
             border-radius: 20px;
@@ -126,19 +147,19 @@
         .stat-value {
             font-size: 2.5em;
             font-weight: 800;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            color: rgba(0, 0, 0, 0.9);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .stat-label {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.8);
             font-size: 1em;
             margin-top: 8px;
             font-weight: 600;
         }
 
         .control-panel {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             padding: 30px;
             border-radius: 20px;
@@ -156,12 +177,13 @@
         }
 
         .control-section h3 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
             font-size: 1.3em;
             font-weight: 700;
+            background: linear-gradient(to right, #3B82F6, #6366F1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
         }
 
         .button-group {
@@ -175,11 +197,12 @@
             border: none;
             border-radius: 12px;
             font-size: 1em;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
             position: relative;
             overflow: hidden;
+            font-family: 'Inter', sans-serif;
         }
 
         .btn::before {
@@ -198,29 +221,29 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
         }
 
         .btn-secondary {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            border: 2px solid rgba(102, 126, 234, 0.3);
+            background: rgba(59, 130, 246, 0.1);
+            color: #3B82F6;
+            border: 2px solid rgba(59, 130, 246, 0.3);
         }
 
         .btn-secondary:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3B82F6;
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #EC4899 0%, #EF4444 100%);
             color: white;
         }
 
@@ -238,7 +261,7 @@
         }
 
         .passage-panel {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             padding: 35px;
             border-radius: 20px;
@@ -267,19 +290,20 @@
 
         .passage-title {
             font-size: 1.8em;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-weight: 800;
+            background: linear-gradient(to right, #3B82F6, #6366F1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 3px solid rgba(102, 126, 234, 0.2);
-            font-weight: 800;
+            border-bottom: 3px solid rgba(59, 130, 246, 0.2);
         }
 
         .passage-text {
             font-size: 1.05em;
             line-height: 1.9;
-            color: #333;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .passage-text p {
@@ -287,7 +311,7 @@
         }
 
         .question-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             padding: 35px;
             border-radius: 20px;
@@ -307,7 +331,7 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 3px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 3px solid rgba(59, 130, 246, 0.2);
         }
 
         .question-meta {
@@ -326,35 +350,35 @@
         }
 
         .badge-easy {
-            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-            color: #0a5f46;
+            background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+            color: #065F46;
         }
 
         .badge-medium {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #8b4513;
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+            color: #78350F;
         }
 
         .badge-hard {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            color: #8b0000;
+            background: linear-gradient(135deg, #F87171 0%, #EF4444 100%);
+            color: #7F1D1D;
         }
 
         .badge-tf {
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            color: #1e40af;
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+            color: #1E3A8A;
         }
 
         .badge-mc {
-            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-            color: #6b21a8;
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+            color: #4C1D95;
         }
 
         .question-text {
             font-size: 1.3em;
             line-height: 1.7;
             margin-bottom: 30px;
-            color: #1f2937;
+            color: rgba(0, 0, 0, 0.9);
             font-weight: 600;
         }
 
@@ -363,7 +387,7 @@
         }
 
         .option {
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(59, 130, 246, 0.05);
             padding: 18px 24px;
             border-radius: 15px;
             margin-bottom: 12px;
@@ -372,29 +396,30 @@
             border: 2px solid transparent;
             font-size: 1.05em;
             font-weight: 500;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .option:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
             transform: translateX(5px);
         }
 
         .option.selected {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-            border-color: #667eea;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+            border-color: #3B82F6;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .option.correct {
-            background: linear-gradient(135deg, rgba(132, 250, 176, 0.3), rgba(143, 211, 244, 0.3));
-            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.3), rgba(16, 185, 129, 0.3));
+            border-color: #10B981;
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
         .option.incorrect {
-            background: linear-gradient(135deg, rgba(255, 154, 158, 0.3), rgba(254, 207, 239, 0.3));
-            border-color: #ef4444;
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.3), rgba(239, 68, 68, 0.3));
+            border-color: #EF4444;
             box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         }
 
@@ -402,19 +427,19 @@
             font-size: 1.8em;
             font-weight: 800;
             color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
             padding: 10px 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
 
         .timer.warning {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
             animation: pulse 1s infinite;
         }
 
         .timer.danger {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
         }
 
         @keyframes pulse {
@@ -423,11 +448,11 @@
         }
 
         .explanation {
-            background: linear-gradient(135deg, rgba(161, 196, 253, 0.2), rgba(194, 233, 251, 0.2));
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(147, 197, 253, 0.2));
             padding: 25px;
             border-radius: 15px;
             margin-top: 25px;
-            border-left: 5px solid #3b82f6;
+            border-left: 5px solid #3B82F6;
             display: none;
             backdrop-filter: blur(10px);
         }
@@ -438,14 +463,14 @@
         }
 
         .explanation h4 {
-            color: #1e40af;
+            color: #1E40AF;
             margin-bottom: 12px;
             font-size: 1.2em;
             font-weight: 700;
         }
 
         .explanation p {
-            color: #1f2937;
+            color: rgba(0, 0, 0, 0.9);
             line-height: 1.7;
             font-size: 1.05em;
         }
@@ -460,10 +485,10 @@
         }
 
         .progress-fill {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #3B82F6 0%, #6366F1 100%);
             height: 100%;
             transition: width 0.5s ease;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
         }
 
         .action-buttons {
@@ -474,7 +499,7 @@
         }
 
         .results-summary {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             padding: 40px;
             border-radius: 20px;
@@ -490,9 +515,10 @@
         }
 
         .results-summary h2 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(to right, #3B82F6, #6366F1, #A855F7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 2.5em;
             margin-bottom: 20px;
             font-weight: 800;
@@ -501,11 +527,12 @@
         .results-score {
             font-size: 5em;
             font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(to right, #3B82F6, #6366F1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 30px 0;
-            text-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .results-details {
@@ -517,15 +544,16 @@
 
         .result-item {
             padding: 25px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
             border-radius: 15px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(59, 130, 246, 0.2);
         }
 
         .result-item h4 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(to right, #3B82F6, #6366F1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
             font-weight: 700;
         }
@@ -533,22 +561,24 @@
         .result-item .value {
             font-size: 2.5em;
             font-weight: 900;
-            color: #1f2937;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         select, input[type="number"] {
             padding: 12px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             border-radius: 12px;
             font-size: 1em;
+            font-family: 'Inter', sans-serif;
             background: rgba(255, 255, 255, 0.9);
             transition: all 0.3s ease;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         select:focus, input[type="number"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .filter-row {
@@ -560,32 +590,33 @@
         }
 
         .toggle-passage {
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(102, 126, 234, 0.3);
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             padding: 10px 20px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 0.95em;
             font-weight: 600;
+            font-family: 'Inter', sans-serif;
             margin-bottom: 20px;
             transition: all 0.3s ease;
-            color: #667eea;
+            color: #3B82F6;
         }
 
         .toggle-passage:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3B82F6;
         }
 
         .loading {
             text-align: center;
             padding: 60px;
-            color: white;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-top: 4px solid #3B82F6;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -604,17 +635,17 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(59, 130, 246, 0.1);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #5568d3 0%, #65398e 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
         }
 
         @media (max-width: 1024px) {
@@ -629,7 +660,7 @@
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2em;
+                font-size: 3em;
             }
 
             .button-group {
@@ -656,7 +687,7 @@
         }
 
         label {
-            color: #333;
+            color: rgba(0, 0, 0, 0.9);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -667,6 +698,7 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
+            accent-color: #3B82F6;
         }
     </style>
 </head>
@@ -675,12 +707,15 @@
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
+    <div class="blob blob4"></div>
+    <div class="blob blob5"></div>
+    <div class="blob blob6"></div>
 
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>🎯 UCAT Verbal Reasoning</h1>
-            <p>Master VR with 100 expertly crafted questions across 25 passages</p>
+            <h1>Verbal Reasoning</h1>
+            <p>UCAT Practice</p>
         </div>
 
         <!-- Stats Bar -->
@@ -706,22 +741,22 @@
         <!-- Control Panel -->
         <div class="control-panel" id="controlPanel">
             <div class="control-section">
-                <h3>📚 Practice Mode</h3>
+                <h3>Practice Mode</h3>
                 <div class="button-group">
                     <button class="btn btn-primary" onclick="startRandomPractice(10)">
-                        🎲 Random 10 Questions
+                        Random 10 Questions
                     </button>
                     <button class="btn btn-primary" onclick="startPassagePractice()">
-                        📖 Practice by Passage
+                        Practice by Passage
                     </button>
                     <button class="btn btn-primary" onclick="startTimedPractice()">
-                        ⏱️ Timed Practice
+                        Timed Practice
                     </button>
                 </div>
             </div>
 
             <div class="control-section">
-                <h3>🎚️ Filters</h3>
+                <h3>Filters</h3>
                 <div class="filter-row">
                     <select id="difficultyFilter">
                         <option value="">All Difficulties</option>
@@ -744,7 +779,7 @@
             </div>
 
             <div class="control-section">
-                <h3>⚙️ Settings</h3>
+                <h3>Settings</h3>
                 <div class="filter-row">
                     <label>
                         <input type="checkbox" id="timedMode"> Timed Mode (90s/question)
@@ -759,7 +794,7 @@
             </div>
 
             <div class="control-section">
-                <h3>📊 Quick Actions</h3>
+                <h3>Quick Actions</h3>
                 <div class="button-group">
                     <button class="btn btn-secondary btn-small" onclick="viewStats()">
                         View Statistics
@@ -784,7 +819,7 @@
             <!-- Passage Panel -->
             <div class="passage-panel" id="passagePanel">
                 <button class="toggle-passage" onclick="togglePassage()">
-                    ← Hide Passage
+                    Hide Passage
                 </button>
                 <div class="passage-title" id="passageTitle"></div>
                 <div class="passage-text" id="passageText"></div>
@@ -793,7 +828,7 @@
             <!-- Question Card -->
             <div class="question-card active" id="questionCard">
                 <button class="toggle-passage" onclick="togglePassage()" id="showPassageBtn" style="display: none;">
-                    → Show Passage
+                    Show Passage
                 </button>
                 
                 <div class="question-header">
@@ -823,7 +858,7 @@
                 </div>
 
                 <div class="explanation" id="explanation">
-                    <h4>📚 Explanation</h4>
+                    <h4>Explanation</h4>
                     <p id="explanationText"></p>
                 </div>
             </div>
@@ -831,7 +866,7 @@
 
         <!-- Results Summary -->
         <div class="results-summary" id="resultsSummary">
-            <h2>🎉 Practice Complete!</h2>
+            <h2>Practice Complete!</h2>
             <div class="results-score" id="finalScore">0%</div>
             
             <div class="results-details">
@@ -855,13 +890,13 @@
 
             <div class="button-group" style="justify-content: center; margin-top: 30px;">
                 <button class="btn btn-primary" onclick="restartPractice()">
-                    🔄 Practice Again
+                    Practice Again
                 </button>
                 <button class="btn btn-secondary" onclick="reviewMistakes()">
-                    📝 Review Mistakes
+                    Review Mistakes
                 </button>
                 <button class="btn btn-secondary" onclick="backToMenu()">
-                    🏠 Back to Menu
+                    Back to Menu
                 </button>
             </div>
         </div>
@@ -874,9 +909,6 @@
     </div>
 
     <script>
-        // EMBED THE DATABASE HERE FOR STANDALONE VERSION
-        // For now, it will load from external file
-        
         let database = null;
         let currentQuestions = [];
         let currentQuestionIndex = 0;
@@ -913,8 +945,8 @@
                 console.error('Error loading database:', error);
                 document.getElementById('loading').innerHTML = `
                     <div class="spinner"></div>
-                    <p style="font-size: 1.2em; font-weight: 600; color: white;">
-                        ⚠️ Error loading database!<br><br>
+                    <p style="font-size: 1.2em; font-weight: 600;">
+                        Error loading database!<br><br>
                         Please make sure <strong>ucat_complete_database.json</strong> is in the same folder as this HTML file.
                     </p>
                 `;
@@ -1177,7 +1209,7 @@
 
         function updateTimerDisplay() {
             const timerEl = document.getElementById('timer');
-            timerEl.textContent = `⏱️ ${timeRemaining}s`;
+            timerEl.textContent = `${timeRemaining}s`;
             
             if (timeRemaining <= 10) {
                 timerEl.className = 'timer danger';
@@ -1233,7 +1265,7 @@
         function reviewMistakes() {
             const mistakes = sessionStats.answers.filter(a => !a.isCorrect);
             if (mistakes.length === 0) {
-                alert('No mistakes to review - perfect score! 🎉');
+                alert('No mistakes to review - perfect score!');
                 return;
             }
             
@@ -1251,7 +1283,7 @@
             const tf = database.questions.filter(q => q.type === 'TF').length;
             const mc = database.questions.filter(q => q.type === 'MC').length;
             
-            alert(`📊 Database Statistics\n\n` +
+            alert(`Database Statistics\n\n` +
                   `Total Questions: ${database.questions.length}\n` +
                   `Easy: ${easy} | Medium: ${medium}\n` +
                   `True/False: ${tf} | Multiple Choice: ${mc}\n\n` +
