@@ -1083,9 +1083,22 @@
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
             
-            const options = question.type === 'TF' 
-                ? ['A. True', 'B. False', 'C. Can\'t Tell']
-                : ['A. Option A', 'B. Option B', 'C. Option C', 'D. Option D'];
+            let options;
+            if (question.type === 'TF') {
+                options = ['A. True', 'B. False', 'C. Can\'t Tell'];
+            } else {
+                // Multiple choice - use actual option text from database
+                if (question.options) {
+                    options = [
+                        'A. ' + question.options.A,
+                        'B. ' + question.options.B,
+                        'C. ' + question.options.C,
+                        'D. ' + question.options.D
+                    ];
+                } else {
+                    options = ['A. Option A', 'B. Option B', 'C. Option C', 'D. Option D'];
+                }
+            }
             
             options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
