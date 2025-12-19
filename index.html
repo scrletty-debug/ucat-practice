@@ -12,48 +12,111 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
-            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .blob1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.3);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .blob2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(102, 126, 234, 0.4);
+            top: 50%;
+            right: -250px;
+            animation-delay: 4s;
+        }
+
+        .blob3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(118, 75, 162, 0.3);
+            bottom: -175px;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
 
         .header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             margin-bottom: 30px;
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .header h1 {
-            color: #667eea;
-            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            font-weight: 800;
         }
 
         .header p {
             color: #666;
-            font-size: 1.1em;
+            font-size: 1.2em;
+            font-weight: 500;
         }
 
         .stats-bar {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 25px;
+            border-radius: 20px;
             margin-bottom: 30px;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
 
         .stat-item {
@@ -61,318 +124,431 @@
         }
 
         .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2.5em;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .stat-label {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 5px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            margin-top: 8px;
+            font-weight: 600;
         }
 
         .control-panel {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .control-section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .control-section:last-child {
+            margin-bottom: 0;
         }
 
         .control-section h3 {
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
-            font-size: 1.2em;
+            font-size: 1.3em;
+            font-weight: 700;
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
         }
 
         .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 2px solid rgba(102, 126, 234, 0.3);
         }
 
         .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-
-        .btn-success {
-            background: #10b981;
-            color: white;
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
         }
 
         .btn-danger {
-            background: #ef4444;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
         }
 
         .btn-small {
-            padding: 8px 16px;
+            padding: 10px 20px;
             font-size: 0.9em;
         }
 
-        .question-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+        /* Practice Container */
+        .practice-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .passage-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-height: 700px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             display: none;
         }
 
-        .question-card.active {
+        .passage-panel.active {
             display: block;
-            animation: slideIn 0.3s ease;
+            animation: slideIn 0.4s ease;
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
+        }
+
+        .passage-title {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(102, 126, 234, 0.2);
+            font-weight: 800;
+        }
+
+        .passage-text {
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .passage-text p {
+            margin-bottom: 18px;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: slideIn 0.4s ease;
         }
 
         .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid rgba(102, 126, 234, 0.2);
         }
 
         .question-meta {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .badge {
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 25px;
             font-size: 0.85em;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .badge-easy {
-            background: #d1fae5;
-            color: #065f46;
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #0a5f46;
         }
 
         .badge-medium {
-            background: #fef3c7;
-            color: #92400e;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #8b4513;
         }
 
         .badge-hard {
-            background: #fee2e2;
-            color: #991b1b;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #8b0000;
         }
 
         .badge-tf {
-            background: #dbeafe;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
             color: #1e40af;
         }
 
         .badge-mc {
-            background: #e9d5ff;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
             color: #6b21a8;
         }
 
         .question-text {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            font-size: 1.3em;
+            line-height: 1.7;
+            margin-bottom: 30px;
             color: #1f2937;
+            font-weight: 600;
         }
 
         .options {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .option {
-            background: #f9fafb;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            background: rgba(102, 126, 234, 0.05);
+            padding: 18px 24px;
+            border-radius: 15px;
+            margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border: 2px solid transparent;
+            font-size: 1.05em;
+            font-weight: 500;
         }
 
         .option:hover {
-            background: #f3f4f6;
-            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateX(5px);
         }
 
         .option.selected {
-            background: #dbeafe;
-            border-color: #3b82f6;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .option.correct {
-            background: #d1fae5;
+            background: linear-gradient(135deg, rgba(132, 250, 176, 0.3), rgba(143, 211, 244, 0.3));
             border-color: #10b981;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
         .option.incorrect {
-            background: #fee2e2;
+            background: linear-gradient(135deg, rgba(255, 154, 158, 0.3), rgba(254, 207, 239, 0.3));
             border-color: #ef4444;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         }
 
         .timer {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 1.8em;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .timer.warning {
-            color: #f59e0b;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             animation: pulse 1s infinite;
         }
 
         .timer.danger {
-            color: #ef4444;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
 
         .explanation {
-            background: #f0f9ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(161, 196, 253, 0.2), rgba(194, 233, 251, 0.2));
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border-left: 5px solid #3b82f6;
             display: none;
+            backdrop-filter: blur(10px);
         }
 
         .explanation.show {
             display: block;
-            animation: slideIn 0.3s ease;
+            animation: slideIn 0.4s ease;
         }
 
         .explanation h4 {
             color: #1e40af;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
         }
 
         .explanation p {
             color: #1f2937;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.05em;
         }
 
         .progress-bar {
-            background: #e5e7eb;
-            height: 8px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            height: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .progress-fill {
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
             height: 100%;
-            transition: width 0.3s ease;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
         }
 
         .action-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
 
         .results-summary {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             display: none;
         }
 
         .results-summary.show {
             display: block;
-            animation: slideIn 0.3s ease;
+            animation: slideIn 0.4s ease;
         }
 
-        .results-score {
-            font-size: 4em;
-            font-weight: bold;
+        .results-summary h2 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 20px 0;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .results-score {
+            font-size: 5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 30px 0;
+            text-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .results-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin: 30px 0;
+            margin: 40px 0;
         }
 
         .result-item {
-            padding: 20px;
-            background: #f9fafb;
-            border-radius: 10px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
         }
 
         .result-item h4 {
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .result-item .value {
-            font-size: 2em;
-            font-weight: bold;
+            font-size: 2.5em;
+            font-weight: 900;
             color: #1f2937;
         }
 
         select, input[type="number"] {
-            padding: 10px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            padding: 12px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
             font-size: 1em;
-            width: 100%;
-            max-width: 200px;
-            margin-right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .filter-row {
@@ -383,20 +559,38 @@
             margin-bottom: 15px;
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
+        .toggle-passage {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
             color: #667eea;
         }
 
+        .toggle-passage:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: white;
+        }
+
         .spinner {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #667eea;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
         }
 
         @keyframes spin {
@@ -404,9 +598,38 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #65398e 100%);
+        }
+
+        @media (max-width: 1024px) {
+            .practice-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .passage-panel {
+                max-height: 400px;
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .button-group {
@@ -424,21 +647,44 @@
             .question-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 15px;
             }
+
+            .results-score {
+                font-size: 3.5em;
+            }
+        }
+
+        label {
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <!-- Animated background blobs -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>🎯 UCAT Verbal Reasoning Practice</h1>
-            <p>Master UCAT VR with 100 expertly crafted questions</p>
+            <h1>🎯 UCAT Verbal Reasoning</h1>
+            <p>Master VR with 100 expertly crafted questions across 25 passages</p>
         </div>
 
         <!-- Stats Bar -->
-        <div class="stats-bar">
+        <div class="stats-bar glass">
             <div class="stat-item">
                 <div class="stat-value" id="totalQuestions">100</div>
                 <div class="stat-label">Total Questions</div>
@@ -533,37 +779,53 @@
             <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
         </div>
 
-        <!-- Question Card -->
-        <div class="question-card" id="questionCard">
-            <div class="question-header">
-                <div class="question-meta">
-                    <span class="badge" id="questionNumber">Q1</span>
-                    <span class="badge" id="passageBadge">Passage 1</span>
-                    <span class="badge" id="difficultyBadge">Easy</span>
-                    <span class="badge" id="typeBadge">TF</span>
+        <!-- Practice Container -->
+        <div class="practice-container" id="practiceContainer" style="display: none;">
+            <!-- Passage Panel -->
+            <div class="passage-panel" id="passagePanel">
+                <button class="toggle-passage" onclick="togglePassage()">
+                    ← Hide Passage
+                </button>
+                <div class="passage-title" id="passageTitle"></div>
+                <div class="passage-text" id="passageText"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card active" id="questionCard">
+                <button class="toggle-passage" onclick="togglePassage()" id="showPassageBtn" style="display: none;">
+                    → Show Passage
+                </button>
+                
+                <div class="question-header">
+                    <div class="question-meta">
+                        <span class="badge" id="questionNumber">Q1</span>
+                        <span class="badge" id="passageBadge">Passage 1</span>
+                        <span class="badge" id="difficultyBadge">Easy</span>
+                        <span class="badge" id="typeBadge">TF</span>
+                    </div>
+                    <div class="timer" id="timer"></div>
                 </div>
-                <div class="timer" id="timer"></div>
-            </div>
 
-            <div class="question-text" id="questionText"></div>
+                <div class="question-text" id="questionText"></div>
 
-            <div class="options" id="optionsContainer"></div>
+                <div class="options" id="optionsContainer"></div>
 
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">
-                    Submit Answer
-                </button>
-                <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()" style="display: none;">
-                    Next Question →
-                </button>
-                <button class="btn btn-danger btn-small" onclick="skipQuestion()">
-                    Skip
-                </button>
-            </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">
+                        Submit Answer
+                    </button>
+                    <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()" style="display: none;">
+                        Next Question →
+                    </button>
+                    <button class="btn btn-danger btn-small" onclick="skipQuestion()">
+                        Skip
+                    </button>
+                </div>
 
-            <div class="explanation" id="explanation">
-                <h4>📚 Explanation</h4>
-                <p id="explanationText"></p>
+                <div class="explanation" id="explanation">
+                    <h4>📚 Explanation</h4>
+                    <p id="explanationText"></p>
+                </div>
             </div>
         </div>
 
@@ -607,12 +869,14 @@
         <!-- Loading -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Loading questions...</p>
+            <p style="font-size: 1.2em; font-weight: 600;">Loading questions...</p>
         </div>
     </div>
 
     <script>
-        // Global variables
+        // EMBED THE DATABASE HERE FOR STANDALONE VERSION
+        // For now, it will load from external file
+        
         let database = null;
         let currentQuestions = [];
         let currentQuestionIndex = 0;
@@ -626,48 +890,61 @@
         };
         let timerInterval = null;
         let timeRemaining = 90;
+        let passageVisible = true;
 
-        // Load database
         async function loadDatabase() {
             try {
                 const response = await fetch('ucat_complete_database.json');
                 database = await response.json();
                 console.log('Database loaded:', database.questions.length, 'questions');
                 
-                // Populate passage filter
                 const passageFilter = document.getElementById('passageFilter');
                 for (let i = 1; i <= 25; i++) {
                     const option = document.createElement('option');
                     option.value = i;
-                    option.textContent = `Passage ${i}`;
+                    const passageTitle = database.passages && database.passages[i] ? 
+                        database.passages[i].title : `Passage ${i}`;
+                    option.textContent = `${i}. ${passageTitle}`;
                     passageFilter.appendChild(option);
                 }
                 
                 document.getElementById('loading').style.display = 'none';
             } catch (error) {
                 console.error('Error loading database:', error);
-                alert('Error loading questions. Please make sure ucat_complete_database.json is in the same folder.');
+                document.getElementById('loading').innerHTML = `
+                    <div class="spinner"></div>
+                    <p style="font-size: 1.2em; font-weight: 600; color: white;">
+                        ⚠️ Error loading database!<br><br>
+                        Please make sure <strong>ucat_complete_database.json</strong> is in the same folder as this HTML file.
+                    </p>
+                `;
             }
         }
 
-        // Filter questions
+        function togglePassage() {
+            passageVisible = !passageVisible;
+            const passagePanel = document.getElementById('passagePanel');
+            const showBtn = document.getElementById('showPassageBtn');
+            
+            if (passageVisible) {
+                passagePanel.classList.add('active');
+                showBtn.style.display = 'none';
+            } else {
+                passagePanel.classList.remove('active');
+                showBtn.style.display = 'block';
+            }
+        }
+
         function filterQuestions(difficulty = '', type = '', passage = '') {
             let filtered = database.questions;
             
-            if (difficulty) {
-                filtered = filtered.filter(q => q.diff === difficulty);
-            }
-            if (type) {
-                filtered = filtered.filter(q => q.type === type);
-            }
-            if (passage) {
-                filtered = filtered.filter(q => q.p === parseInt(passage));
-            }
+            if (difficulty) filtered = filtered.filter(q => q.diff === difficulty);
+            if (type) filtered = filtered.filter(q => q.type === type);
+            if (passage) filtered = filtered.filter(q => q.p === parseInt(passage));
             
             return filtered;
         }
 
-        // Start random practice
         function startRandomPractice(num = 10) {
             const questions = [...database.questions];
             shuffleArray(questions);
@@ -675,7 +952,6 @@
             startSession();
         }
 
-        // Start passage practice
         function startPassagePractice() {
             const passage = prompt('Enter passage number (1-25):');
             if (passage && passage >= 1 && passage <= 25) {
@@ -684,13 +960,11 @@
             }
         }
 
-        // Start timed practice
         function startTimedPractice() {
             document.getElementById('timedMode').checked = true;
             startRandomPractice(10);
         }
 
-        // Start filtered practice
         function startFilteredPractice() {
             const difficulty = document.getElementById('difficultyFilter').value;
             const type = document.getElementById('typeFilter').value;
@@ -713,7 +987,6 @@
             startSession();
         }
 
-        // Start session
         function startSession() {
             sessionStats = {
                 correct: 0,
@@ -724,15 +997,18 @@
             };
             
             currentQuestionIndex = 0;
+            passageVisible = true;
+            
             document.getElementById('controlPanel').style.display = 'none';
             document.getElementById('progressBar').style.display = 'block';
-            document.getElementById('questionCard').classList.add('active');
+            document.getElementById('practiceContainer').style.display = 'grid';
+            document.getElementById('passagePanel').classList.add('active');
+            document.getElementById('showPassageBtn').style.display = 'none';
             
             updateStats();
             displayQuestion();
         }
 
-        // Display question
         function displayQuestion() {
             if (currentQuestionIndex >= currentQuestions.length) {
                 endSession();
@@ -742,11 +1018,23 @@
             const question = currentQuestions[currentQuestionIndex];
             selectedAnswer = null;
 
-            // Update progress
             const progress = ((currentQuestionIndex) / currentQuestions.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
 
-            // Update question info
+            const passageNum = question.p;
+            if (database.passages && database.passages[passageNum]) {
+                const passage = database.passages[passageNum];
+                document.getElementById('passageTitle').textContent = passage.title;
+                
+                const paragraphs = passage.text.split('\n\n');
+                document.getElementById('passageText').innerHTML = paragraphs
+                    .map(p => `<p>${p.trim()}</p>`)
+                    .join('');
+            } else {
+                document.getElementById('passageTitle').textContent = `Passage ${passageNum}`;
+                document.getElementById('passageText').innerHTML = '<p><em>Passage text loading...</em></p>';
+            }
+
             document.getElementById('questionNumber').textContent = `Q${question.q}`;
             document.getElementById('passageBadge').textContent = `Passage ${question.p}`;
             
@@ -755,19 +1043,17 @@
             diffBadge.className = 'badge badge-' + question.diff.toLowerCase();
             
             const typeBadge = document.getElementById('typeBadge');
-            typeBadge.textContent = question.type === 'TF' ? 'T/F/CT' : 'Multiple Choice';
+            typeBadge.textContent = question.type === 'TF' ? 'T/F/CT' : 'MC';
             typeBadge.className = 'badge badge-' + question.type.toLowerCase();
 
-            // Update question text
             document.getElementById('questionText').textContent = question.text;
 
-            // Display options
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
             
             const options = question.type === 'TF' 
                 ? ['A. True', 'B. False', 'C. Can\'t Tell']
-                : ['A', 'B', 'C', 'D'].map(letter => `${letter}. Option ${letter}`);
+                : ['A. Option A', 'B. Option B', 'C. Option C', 'D. Option D'];
             
             options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
@@ -778,12 +1064,10 @@
                 optionsContainer.appendChild(optionDiv);
             });
 
-            // Reset buttons
             document.getElementById('submitBtn').style.display = 'inline-block';
             document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('explanation').classList.remove('show');
 
-            // Start timer if enabled
             if (document.getElementById('timedMode').checked) {
                 startTimer();
             } else {
@@ -791,14 +1075,11 @@
             }
         }
 
-        // Select option
         function selectOption(index) {
-            // Remove previous selection
             document.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected');
             });
             
-            // Add selection to clicked option
             const options = document.querySelectorAll('.option');
             options[index].classList.add('selected');
             
@@ -806,7 +1087,6 @@
             selectedAnswer = letters[index];
         }
 
-        // Submit answer
         function submitAnswer() {
             if (!selectedAnswer) {
                 alert('Please select an answer first!');
@@ -818,7 +1098,6 @@
             const question = currentQuestions[currentQuestionIndex];
             const isCorrect = selectedAnswer === question.ans;
 
-            // Update options display
             const options = document.querySelectorAll('.option');
             options.forEach((opt, index) => {
                 const letters = ['A', 'B', 'C', 'D'];
@@ -827,10 +1106,9 @@
                 } else if (letters[index] === selectedAnswer && !isCorrect) {
                     opt.classList.add('incorrect');
                 }
-                opt.onclick = null; // Disable clicking
+                opt.onclick = null;
             });
 
-            // Update stats
             if (isCorrect) {
                 sessionStats.correct++;
             } else {
@@ -846,18 +1124,15 @@
 
             updateStats();
 
-            // Show explanation if enabled
             if (document.getElementById('showExplanations').checked) {
                 document.getElementById('explanationText').textContent = question.exp;
                 document.getElementById('explanation').classList.add('show');
             }
 
-            // Update buttons
             document.getElementById('submitBtn').style.display = 'none';
             document.getElementById('nextBtn').style.display = 'inline-block';
         }
 
-        // Skip question
         function skipQuestion() {
             stopTimer();
             sessionStats.skipped++;
@@ -872,13 +1147,11 @@
             nextQuestion();
         }
 
-        // Next question
         function nextQuestion() {
             currentQuestionIndex++;
             displayQuestion();
         }
 
-        // Timer functions
         function startTimer() {
             timeRemaining = 90;
             updateTimerDisplay();
@@ -915,7 +1188,6 @@
             }
         }
 
-        // Update stats
         function updateStats() {
             document.getElementById('correctCount').textContent = sessionStats.correct;
             document.getElementById('incorrectCount').textContent = sessionStats.incorrect;
@@ -925,21 +1197,18 @@
             document.getElementById('accuracy').textContent = accuracy + '%';
         }
 
-        // End session
         function endSession() {
             stopTimer();
             
-            document.getElementById('questionCard').classList.remove('active');
+            document.getElementById('practiceContainer').style.display = 'none';
             document.getElementById('progressBar').style.display = 'none';
             
-            // Calculate final stats
             const total = sessionStats.correct + sessionStats.incorrect + sessionStats.skipped;
             const accuracy = total > 0 ? Math.round((sessionStats.correct / total) * 100) : 0;
             const duration = Date.now() - sessionStats.startTime;
             const minutes = Math.floor(duration / 60000);
             const seconds = Math.floor((duration % 60000) / 1000);
             
-            // Display results
             document.getElementById('finalScore').textContent = accuracy + '%';
             document.getElementById('totalAttempted').textContent = total;
             document.getElementById('finalCorrect').textContent = sessionStats.correct;
@@ -949,13 +1218,11 @@
             document.getElementById('resultsSummary').classList.add('show');
         }
 
-        // Back to menu
         function backToMenu() {
             document.getElementById('resultsSummary').classList.remove('show');
             document.getElementById('controlPanel').style.display = 'block';
         }
 
-        // Restart practice
         function restartPractice() {
             backToMenu();
             if (currentQuestions.length > 0) {
@@ -963,7 +1230,6 @@
             }
         }
 
-        // Review mistakes
         function reviewMistakes() {
             const mistakes = sessionStats.answers.filter(a => !a.isCorrect);
             if (mistakes.length === 0) {
@@ -979,7 +1245,6 @@
             startSession();
         }
 
-        // View stats
         function viewStats() {
             const easy = database.questions.filter(q => q.diff === 'Easy').length;
             const medium = database.questions.filter(q => q.diff === 'Medium').length;
@@ -996,7 +1261,6 @@
                   `Skipped: ${sessionStats.skipped}`);
         }
 
-        // Reset progress
         function resetProgress() {
             if (confirm('Are you sure you want to reset all progress?')) {
                 sessionStats = {
@@ -1011,7 +1275,6 @@
             }
         }
 
-        // Export results
         function exportResults() {
             const data = {
                 session: sessionStats,
@@ -1026,7 +1289,6 @@
             a.click();
         }
 
-        // Utility function
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -1034,7 +1296,6 @@
             }
         }
 
-        // Initialize
         window.onload = loadDatabase;
     </script>
 </body>
